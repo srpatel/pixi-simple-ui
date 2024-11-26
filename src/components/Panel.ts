@@ -3,19 +3,30 @@ import Component from "./Component";
 
 export default class Panel extends Component {
   private pane: PIXI.NineSliceSprite;
-  constructor(props?: Partial<{ width: number; height: number }>) {
+  constructor(
+    props?: Partial<{
+      width: number;
+      height: number;
+      rounded: "sm" | "md" | "lg";
+      color: PIXI.ColorSource;
+    }>
+  ) {
     super();
 
     this.pane = new PIXI.NineSliceSprite(
-      PIXI.Texture.from("simple-ui/rounded-md.png")
+      PIXI.Texture.from(`simple-ui/rounded-${props?.rounded ?? "md"}.png`)
     );
     this.addChild(this.pane);
 
     this.setSize(props?.width, props?.height);
+
+    if (props?.color != undefined) {
+      this.setColor(props?.color);
+    }
   }
 
-  updateStyle() {
-    this.pane.tint = this.style.ForegroundColour;
+  setColor(color: PIXI.ColorSource) {
+    this.pane.tint = color;
   }
 
   onSizeChanged(): void {

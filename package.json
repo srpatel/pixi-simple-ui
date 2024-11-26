@@ -2,7 +2,8 @@
   "name": "pixi-simple-ui",
   "version": "1.0.0",
   "description": "A simple UI library for PixiJS",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
