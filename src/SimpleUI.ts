@@ -1,0 +1,3 @@
+export default class SimpleUI {
+    // function to set default style...
+}

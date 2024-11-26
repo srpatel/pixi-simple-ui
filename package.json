@@ -1,0 +1,20 @@
+{
+  "name": "pixi-simple-ui",
+  "version": "1.0.0",
+  "description": "A simple UI library for PixiJS",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "copy-assets": "cp -r ./dist/"
+  },
+  "peerDependencies": {
+    "pixi.js": "^8.0.0"
+  },
+  "devDependencies": {
+    "pixi.js": "^8.0.0",
+    "typescript": "^5.4.3"
+  },
+  "author": "sunil patel <me@sunil.page>",
+  "license": "MIT"
+}
