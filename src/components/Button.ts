@@ -33,9 +33,9 @@ export default class Button extends Component {
   private raisedYOffset: number;
   private bottomPane: PIXI.ViewContainer;
   private topPane: PIXI.ViewContainer;
-  private actorUp: PIXI.Container | undefined;
-  private actorOver: PIXI.Container | undefined;
-  private actorDown: PIXI.Container | undefined;
+  protected actorUp: PIXI.Container | undefined;
+  protected actorOver: PIXI.Container | undefined;
+  protected actorDown: PIXI.Container | undefined;
 
   constructor(_props?: Partial<ButtonProps>) {
     super();
