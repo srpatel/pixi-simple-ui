@@ -14,9 +14,9 @@ type TextButtonProps = Omit<
 export default class TextButton extends Button {
   public static defaultProps: TextButtonProps = {
     ...Button.defaultProps,
-    textColorUp: 0xffffff,
-    textColorOver: 0xe4e4e4,
-    textColorDown: 0xc0bcbc,
+    textColorUp: 0,
+    textColorOver: 0,
+    textColorDown: 0x333333,
     text: "Button",
   };
 
@@ -37,13 +37,33 @@ export default class TextButton extends Button {
         align: "center",
       },
     });
-    actorUp.tint = 0;
+    actorUp.tint = props.textColorUp;
+
+    const actorOver = new PIXI.BitmapText({
+      text: props.text,
+      style: {
+        fontFamily: "Mesmerize",
+        fontSize: 24,
+        align: "center",
+      },
+    });
+    actorOver.tint = props.textColorOver;
+
+    const actorDown = new PIXI.BitmapText({
+      text: props.text,
+      style: {
+        fontFamily: "Mesmerize",
+        fontSize: 24,
+        align: "center",
+      },
+    });
+    actorDown.tint = props.textColorDown;
 
     const subProps = {
       ...props,
       actorUp,
-      actorOver: actorUp,
-      actorDown: actorUp,
+      actorOver,
+      actorDown,
     };
 
     super(subProps);
