@@ -2,7 +2,7 @@ import * as PIXI from "pixi.js";
 import Component from "./Component";
 import Panel from "./Panel";
 
-type ButtonProps = {
+export type ButtonProps = {
   width: number;
   height: number;
   rounded: "none" | "sm" | "md" | "lg";
@@ -12,12 +12,15 @@ type ButtonProps = {
   topColorOver: PIXI.ColorSource;
   topColorDown: PIXI.ColorSource;
   bottomColor: PIXI.ColorSource;
+  actorUp?: PIXI.Container;
+  actorOver?: PIXI.Container;
+  actorDown?: PIXI.Container;
 };
 
 export default class Button extends Component {
   public static defaultProps: ButtonProps = {
     width: 100,
-    height: 50,
+    height: 40,
     raisedYOffset: 10,
     pressedYOffset: 2,
     rounded: "none",
@@ -30,6 +33,9 @@ export default class Button extends Component {
   private raisedYOffset: number;
   private bottomPane: PIXI.ViewContainer;
   private topPane: PIXI.ViewContainer;
+  private actorUp: PIXI.Container | undefined;
+  private actorOver: PIXI.Container | undefined;
+  private actorDown: PIXI.Container | undefined;
 
   constructor(_props?: Partial<ButtonProps>) {
     super();
@@ -45,6 +51,12 @@ export default class Button extends Component {
     this.bottomPane.tint = props.bottomColor;
     this.topPane.tint = props.topColorUp;
 
+    this.actorUp = props.actorUp;
+    this.actorOver = props.actorOver;
+    this.actorDown = props.actorDown;
+
+    this.showOnly(this.actorUp);
+
     this.hitArea = new PIXI.Rectangle(
       0,
       -props.raisedYOffset,
@@ -59,23 +71,29 @@ export default class Button extends Component {
       if (mode != "up") return;
       mode = "over";
       this.topPane.tint = props.topColorOver;
+      this.showOnly(this.actorOver);
     });
     this.on("pointerout", () => {
       if (mode != "over") return;
       mode = "up";
       this.topPane.tint = props.topColorUp;
+      this.showOnly(this.actorUp);
     });
     this.on("pointerdown", () => {
       mode = "down";
       this.topPane.tint = props.topColorDown;
       this.topPane.position.y =
         this.bottomPane.position.y - props.pressedYOffset;
+      this.showOnly(this.actorDown);
+      this.positionActors();
     });
     const onUp = () => {
       mode = "up";
       this.topPane.tint = props.topColorUp;
       this.topPane.position.y =
         this.bottomPane.position.y - props.raisedYOffset;
+      this.showOnly(this.actorUp);
+      this.positionActors();
     };
     this.on("pointerup", onUp);
     this.on("pointerupoutside", onUp);
@@ -83,6 +101,10 @@ export default class Button extends Component {
 
     this.addChild(this.bottomPane);
     this.addChild(this.topPane);
+
+    if (this.actorUp) this.addChild(this.actorUp);
+    if (this.actorOver) this.addChild(this.actorOver);
+    if (this.actorDown) this.addChild(this.actorDown);
 
     this.setSize(props.width, props.height);
   }
@@ -101,5 +123,26 @@ export default class Button extends Component {
       this.bottomPane.position.x,
       this.bottomPane.position.y - this.raisedYOffset
     );
+
+    this.positionActors();
+  }
+
+  private showOnly(show: PIXI.Container) {
+    for (const actor of [this.actorUp, this.actorOver, this.actorDown]) {
+      if (actor) {
+        actor.visible = show == actor;
+      }
+    }
+  }
+
+  private positionActors() {
+    for (const actor of [this.actorUp, this.actorOver, this.actorDown]) {
+      if (actor) {
+        actor.position.set(
+          this.topPane.position.x + (this.topPane.width - actor.width) / 2,
+          this.topPane.position.y + (this.topPane.height - actor.height) / 2
+        );
+      }
+    }
   }
 }

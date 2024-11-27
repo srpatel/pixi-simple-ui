@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc --build",
+    "watch": "tsc --watch",
     "clean": "tsc --build --clean",
     "copy-assets": "cp -r ./dist/"
   },
