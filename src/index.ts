@@ -4,6 +4,7 @@ import SizeableContainer from "./layout/SizeableContainer";
 
 import Component from "./components/Component";
 import Panel from "./components/Panel";
-const Components = { Component, Panel };
+import Button from "./components/Button";
+const Components = { Panel, Button };
 
-export { SimpleUI, SizeableContainer, Components };
+export { SimpleUI, SizeableContainer, Component, Components };

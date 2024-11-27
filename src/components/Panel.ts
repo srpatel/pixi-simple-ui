@@ -1,36 +1,48 @@
 import * as PIXI from "pixi.js";
 import Component from "./Component";
 
+
+type Roundedness = "none" | "sm" | "md" | "lg";
+
 type PanelProps = {
   width: number;
   height: number;
-  rounded: "sm" | "md" | "lg";
+  rounded: Roundedness;
   color: PIXI.ColorSource;
 };
 
 export default class Panel extends Component {
-  private pane: PIXI.NineSliceSprite;
   public static defaultProps: PanelProps = {
     width: 100,
     height: 100,
-    rounded: "md",
+    rounded: "none",
     color: 0xffffff,
   };
 
-  constructor(props?: Partial<PanelProps>) {
+  private pane: PIXI.ViewContainer;
+
+  constructor(_props?: Partial<PanelProps>) {
     super();
 
-    props = {
+    const props = {
       ...Panel.defaultProps,
-      ...(props ?? {}),
+      ...(_props ?? {}),
     };
 
-    this.pane = new PIXI.NineSliceSprite(
-      PIXI.Texture.from(`simple-ui/rounded-${props.rounded}.png`)
-    );
+    this.pane = Panel.makeViewContainer(props.rounded);
     this.addChild(this.pane);
     this.setSize(props.width, props.height);
     this.setColor(props.color);
+  }
+
+  static makeViewContainer(r: Roundedness) {
+    if (r == "none") {
+      return PIXI.Sprite.from(PIXI.Texture.WHITE);
+    } else {
+      return new PIXI.NineSliceSprite(
+        PIXI.Texture.from(`simple-ui/rounded-${r}.png`)
+      );
+    }
   }
 
   setColor(color: PIXI.ColorSource) {
@@ -38,7 +50,6 @@ export default class Panel extends Component {
   }
 
   onSizeChanged(): void {
-    this.pane.width = this.width;
-    this.pane.height = this.height;
+    this.pane.setSize(this.width, this.height);
   }
 }
