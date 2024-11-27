@@ -24,16 +24,23 @@ This can be done as part of an appropriate script in `package.json`.
 cp node_modules/pixi-simple-ui/assets/* public/simple-ui/
 ```
 
-The assets will also need loading when initialising the application:
+The assets will also need loading when initialising the application. Where "simple-ui" is the path to the folder into which you copied the simple-ui assets.
 
 ```javascript
-await PIXI.Assets.load(["simple-ui/spritesheet.json"]);
+await SimpleUI.init("simple-ui");
 ```
 
 ## Usage
 
+Default props. Every component has mutable default props which are applied when a new component of that type is instantiated.
+If you supply any props to the constructor, any values supplied override the defaults. In this way you can set a "look and feel" for your application.
+
 - UI components
-  - how to handle sizing and styling of buttons etc?
+  - [ ] Button (text button, image button, etc.)
+  - [ ] Panel
+  - [ ] Stretch: Radio, Checkbox, ScrollPane, SwipeablePane etc.
+- Font
+  - [ ] How to set the default font style? needed for e.g. buttons
 - Screen
   - screen
   - modals

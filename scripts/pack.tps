@@ -145,7 +145,7 @@
         <key>trimSpriteNames</key>
         <false/>
         <key>prependSmartFolderName</key>
-        <true/>
+        <false/>
         <key>autodetectAnimations</key>
         <true/>
         <key>globalSpriteSettings</key>
@@ -173,8 +173,8 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../pre-pack/circle.png</key>
-            <key type="filename">../pre-pack/cross.png</key>
+            <key type="filename">../pre-pack/simple-ui/circle.png</key>
+            <key type="filename">../pre-pack/simple-ui/cross.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -189,61 +189,47 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../pre-pack/rounded-lg.png</key>
+            <key type="filename">../pre-pack/simple-ui/rounded-lg.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
-                <true/>
+                <false/>
                 <key>scale9Borders</key>
-                <rect>18,18,6,6</rect>
+                <rect>11,11,21,21</rect>
                 <key>scale9Paddings</key>
                 <rect>11,11,21,21</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../pre-pack/rounded-md.png</key>
+            <key type="filename">../pre-pack/simple-ui/rounded-md.png</key>
+            <key type="filename">../pre-pack/simple-ui/rounded-sm.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
-                <true/>
+                <false/>
                 <key>scale9Borders</key>
-                <rect>12,12,3,3</rect>
+                <rect>7,7,13,13</rect>
                 <key>scale9Paddings</key>
                 <rect>7,7,13,13</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../pre-pack/rounded-sm.png</key>
+            <key type="filename">../pre-pack/simple-ui/rounded-xl.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
                 <key>spriteScale</key>
                 <double>1</double>
                 <key>scale9Enabled</key>
-                <true/>
-                <key>scale9Borders</key>
-                <rect>9,9,9,9</rect>
-                <key>scale9Paddings</key>
-                <rect>7,7,13,13</rect>
-                <key>scale9FromFile</key>
                 <false/>
-            </struct>
-            <key type="filename">../pre-pack/rounded-xl.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0,0</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <true/>
                 <key>scale9Borders</key>
-                <rect>23,23,9,9</rect>
+                <rect>14,14,27,27</rect>
                 <key>scale9Paddings</key>
                 <rect>14,14,27,27</rect>
                 <key>scale9FromFile</key>
