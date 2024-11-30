@@ -24,7 +24,7 @@ export default class Button extends Component {
     raisedYOffset: 10,
     pressedYOffset: 2,
     rounded: "none",
-    topColorUp: 0xffffff,
+    topColorUp: 0xefefef,
     topColorOver: 0xe4e4e4,
     topColorDown: 0xc0bcbc,
     bottomColor: 0x666666,
