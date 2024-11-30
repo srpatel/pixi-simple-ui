@@ -30,16 +30,22 @@ export default class TextButton extends Button {
     const actorUp = new Label({
       text: props.text,
       color: props.textColorUp,
+      verticalAlign: "center",
+      align: "center",
     });
 
     const actorOver = new Label({
       text: props.text,
       color: props.textColorOver,
+      verticalAlign: "center",
+      align: "center",
     });
 
     const actorDown = new Label({
       text: props.text,
       color: props.textColorDown,
+      verticalAlign: "center",
+      align: "center",
     });
 
     const subProps = {

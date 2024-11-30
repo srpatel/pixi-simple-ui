@@ -10,10 +10,17 @@ type ZunilApplicationOptions = PIXI.ApplicationOptions & {
 };
 
 export default class Application extends PIXI.Application {
+  static instance: Application;
   targetWidth: number | undefined;
   targetHeight: number | undefined;
   resizeMode: ResizeMode;
   currentScreen: Screen | null;
+  modals: Screen[] = [];
+  constructor() {
+    super();
+
+    Application.instance = this;
+  }
   async init(options?: Partial<ZunilApplicationOptions>) {
     const result = await super.init({
       resizeTo: window,
@@ -50,13 +57,37 @@ export default class Application extends PIXI.Application {
   setScreen(screen: Screen) {
     if (this.currentScreen) {
       this.currentScreen.onRemovedFromStage(this.stage);
-      this.currentScreen.removeFromParent();
+      this.stage.removeChild(this.currentScreen);
     }
     this.currentScreen = screen;
     if (this.currentScreen) {
       this.currentScreen.onAddedToStage(this.stage);
       this.stage.addChildAt(this.currentScreen, 0);
     }
+    this.resize();
+  }
+
+  pushModal(modal: Screen) {
+    this.popModal(modal);
+    this.modals.push(modal);
+    this.stage.addChild(modal);
+    this.resize();
+  }
+
+  popModal(modal?: Screen) {
+    if (this.modals.length == 0) return;
+
+    if (!modal) {
+      modal = this.modals[this.modals.length - 1];
+    }
+
+    const index = this.modals.indexOf(modal);
+    if (index < 0) {
+      return;
+    }
+
+    this.modals.splice(index, 1);
+    this.stage.removeChild(modal);
     this.resize();
   }
 
@@ -104,6 +135,8 @@ export default class Application extends PIXI.Application {
       this.currentScreen.setSize(screenWidth, screenHeight);
     }
     // Set sizes of all modals
-    // ...
+    for (const modal of this.modals) {
+      modal.setSize(screenWidth, screenHeight);
+    }
   }
 }

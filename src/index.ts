@@ -1,6 +1,8 @@
 import Application from "./Application";
 
 import Screen from "./layout/Screen";
+import Modal from "./layout/Modal";
+import MessageModal from "./layout/MessageModal";
 
 import SizeableContainer from "./components/SizeableContainer";
 import Component from "./components/Component";
@@ -16,4 +18,6 @@ export {
   Button,
   TextButton,
   SizeableContainer,
+  Modal,
+  MessageModal,
 };

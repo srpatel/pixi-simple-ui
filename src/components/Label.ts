@@ -1,14 +1,15 @@
 import * as PIXI from "pixi.js";
 import Component from "./Component";
 
-type AlignType = "left" | "center" | "right";
+type HAlignType = "left" | "center" | "right";
+type VAlignType = "top" | "center" | "bottom";
 
 type LabelProps = {
   style: Partial<PIXI.TextStyle>;
   text: string;
   color: PIXI.ColorSource;
-  align: AlignType;
-  verticalAlign: AlignType;
+  align: HAlignType;
+  verticalAlign: VAlignType;
   width: number;
   height: number;
 };
@@ -30,14 +31,18 @@ export default class Label extends Component {
   };
 
   private textActor: PIXI.BitmapText;
-  private align: AlignType;
-  private verticalAlign: AlignType;
+  private align: HAlignType;
+  private verticalAlign: VAlignType;
   constructor(_props?: Partial<LabelProps>) {
     super();
 
     const props = {
       ...Label.defaultProps,
       ...(_props ?? {}),
+      style: {
+        ...Label.defaultProps.style,
+        ..._props?.style,
+      },
     };
 
     this.align = props.align;
@@ -59,6 +64,10 @@ export default class Label extends Component {
     this.onSizeChanged();
   }
 
+  getTextHeight() {
+    return this.textActor.height;
+  }
+
   onSizeChanged() {
     this.textActor.style.wordWrapWidth = this.width;
 
@@ -72,7 +81,7 @@ export default class Label extends Component {
     let y = 0;
     if (this.verticalAlign == "center") {
       y = (this.height - this.textActor.height) / 2;
-    } else if (this.verticalAlign == "right") {
+    } else if (this.verticalAlign == "bottom") {
       y = this.height - this.textActor.height;
     }
 
