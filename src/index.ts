@@ -1,11 +1,19 @@
-import SimpleUI from "./SimpleUI";
+import Application from "./Application";
 
-import SizeableContainer from "./layout/SizeableContainer";
+import Screen from "./layout/Screen";
 
+import SizeableContainer from "./components/SizeableContainer";
 import Component from "./components/Component";
 import Panel from "./components/Panel";
 import Button from "./components/Button";
 import TextButton from "./components/TextButton";
-const Components = { Panel, Button, TextButton };
 
-export { SimpleUI, SizeableContainer, Component, Components };
+export {
+  Application,
+  Screen,
+  Component,
+  Panel,
+  Button,
+  TextButton,
+  SizeableContainer,
+};

@@ -19,7 +19,7 @@ export type ButtonProps = {
 
 export default class Button extends Component {
   public static defaultProps: ButtonProps = {
-    width: 100,
+    width: 150,
     height: 40,
     raisedYOffset: 10,
     pressedYOffset: 2,

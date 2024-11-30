@@ -1,3 +1,3 @@
-import SizeableContainer from "../layout/SizeableContainer";
+import SizeableContainer from "./SizeableContainer";
 
 export default abstract class Component extends SizeableContainer {}
